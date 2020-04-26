@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>HTML5 개인 포트폴리오 홈페이지</title>
+	<style>
+		#stu-pic { width: 6em; height: 8em; float: left; }
+		img { border: 0; padding: 2px; }
+		@media only screen and (min-width: 321px) and (orientation: landscape) {
+		aside { width: 20%; text-align: center; float: right; }
+		}
+		table tbody tr:nth-child(odd) {background: #FAF4C0; }
+        table tbody tr:nth-child(even) {background: #CEF279; }
+        table tbody tr:nth-child(odd):hover {background: #C98AFF; }
+        table tbody tr:nth-child(even):hover {background: #C98AFF; }
+		table tr:hover { background: #C98AFF; }
+		#year-table { table-layout: auto; width: 40%; border-collapse: seperate; }
+		#year-table thead { background: #E4F2D0; }
+		#logo { position: fixed; top:130px; left: 70px; opacity: 0.3; } 
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="mportpolio.css"/>
+	<link rel="stylesheet" type="text/css" href="study.css"/>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+</head>
+<body>
+
+	<div data-role="header" data-position="fixed">
+		<h1>안세연 홈페이지</h1>
+	 </div>
+	 <div data-role="content">
+	<section class="section1">  
+		<h3>인적사항</h3>
+		<ul>
+			<li>성    명 : 안세연</li>
+			<li>생년월일 : 1998. 02. 07</li>
+			<li>주    소 : 서울시 123</li>
+			<li>연 락 처 : 010-123-4567</li>
+			<li>학    력
+			<table id="year-table" border="1">
+				<thead>
+					<tr>	<th>졸업년도</th> <th>출신학교</th></tr>
+				</thead>
+				<tbody>
+					<tr>	<td>2007. 2</td><td> 우신초등학교 졸업</td>	</tr>
+					<tr>	<td>2013. 2.</td><td> 영원중학교 졸업</td>	</tr>
+					<tr>	<td>2016. 2.</td><td> 대영고등학교 졸업</td></tr>
+					<tr>	<td>2020. 4.</td><td> <a href="https://www.google.com/maps/place/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B5%AC%EB%A1%9C%EA%B5%AC+%EC%98%A4%EB%A5%982%EB%8F%99+%EC%97%B0%EB%8F%99%EB%A1%9C+320/@37.4877397,126.8229683,17z/data=!3m1!4b1!4m5!3m4!1s0x357b6261fe526efb:0xe78ca395ff4c6df0!8m2!3d37.4877355!4d126.825157?hl=ko" target="_blank">성공회대학교 소프트웨어공학과 재학</a></td></tr>
+				</tbody>
+			</table>
+			</li>
+		</ul>
+	</section>
+	<img id="logo" src="logo.jpg"/>	
+	<aside>
+		<h3>참조링크</h3>
+		<a href="http://www.naver.com">
+			<img class="portal" src="naver.jpg" alt="네이버이동"/>
+		</a>
+		<a href="http://www.google.com">
+			<img class="portal" src="google.jpg" alt="구글이동"/>
+		</a>
+		<a href="http://www.daum.net">
+			<img class="portal" src="daum.jpg" alt="다음이동"/>
+		</a>
+	</aside>
+  </div>
+  <div data-role="footer" data-position="fixed">
+	<div data-role="navbar" >
+	 <ul>
+		<li><a href="mintro.html" data-transition="slide"> 소개 </a></li>
+		<li><a href="minfo.html" data-transition="slideup"> 인적사항 </a></li>
+		<li><a href="mstudy.html" data-transition="flip"> 교과 </a></li>
+		<li><a href="mcareer.html" data-transition="pop"> 비교과 </a></li>
+	 </ul>
+</div>
+</div>
+
+</body>
+</html>
