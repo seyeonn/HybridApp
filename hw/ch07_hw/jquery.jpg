@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<!--
+	*** 일반 ***
+	bright/dark: 스킨 분위기
+	bright-jacket/dark-jacket: 데스크탑, 모바일 모드 하단의 Jacket 분위기
+	bright-jacket-mobile/dark-jacket-mobile: 모바일 모드 메뉴의 Jacket 분위기
+	bright-sub/dark-sub: 보조 메뉴 분위기
+	gray-link/color-link: 일부 링크에 연한 컬러 설정
+	normal/expanded/more-expanded: 확장 모드 설정
+	hide-author/show-author: 저작자 표시 설정
+	default-comments/default-related/default-share/default-info: 활동하기 활성화 설정
+	tistory-comments/disqus-comments: 댓글 활성화 설정
+	enable-toolbar/disable-toolbar: Toolbar 설정
+-->
+<html lang="ko-kr" class="bright bright-jacket dark-jacket-mobile bright-sub color-link expanded show-author default-info tistory-comments enable-toolbar close sub-close" style="display:none">
+<head>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/lib/lightbox/css/lightbox.min.css" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/style/content/font.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/style/content/content.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5" /><!--[if lt IE 9]><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script><![endif]--><!--[if gte IE 9]>
+<!--><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.2.1.min.js"></script><!--<![endif]-->
+<script src="https://t1.daumcdn.net/tistory_admin/lib/lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script>
+lightbox.options.fadeDuration = 200;
+lightbox.options.resizeDuration = 200;
+lightbox.options.wrapAround = false;
+lightbox.options.albumLabel = "%1 / %2";
+</script>
+<script>var tjQuery = jQuery.noConflict(true);</script><style type="text/css">.tt_article_useless_p_margin p {padding-top:0 !important;padding-bottom:0 !important;margin-top:0 !important;margin-bottom:0 !important;}</style><meta name="referrer" content="always"><link rel="icon" href="https://t1.daumcdn.net/cfile/tistory/2204814657E3550911" /><link rel="apple-touch-icon" href="//img1.daumcdn.net/thumb/C180x180/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F265C1A4F57DD23A219">
+<link rel="apple-touch-icon" sizes="76x76" href="//img1.daumcdn.net/thumb/C76x76/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F265C1A4F57DD23A219">
+<link rel="apple-touch-icon" sizes="120x120" href="//img1.daumcdn.net/thumb/C120x120/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F265C1A4F57DD23A219">
+<link rel="apple-touch-icon" sizes="152x152" href="//img1.daumcdn.net/thumb/C152x152/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F265C1A4F57DD23A219"><meta name="description" content="잘 작성된 소스 코드를 분석하는 것은 프로그래밍 실력을 늘리는 좋은 방법이다. jQuery 자바스크립트 라이브러리는 웹 개발자라면 누구나 한 번쯤 들어봤을 정도로 웹 개발시 필요한 DOM 파싱, 이벤트 처리, Ajax..">
+
+<!-- BEGIN OPENGRAPH -->
+<link rel="canonical" href="https://boycoding.tistory.com/45" /><meta property="og:type" content="article"><meta property="og:url" content="https://boycoding.tistory.com/45" ><meta property="og:site_name" content="소년코딩" ><meta property="og:title" content="jQuery 소스 구조분석을 해야하는 이유" ><meta name="by" content="소년코딩" ><meta property="og:description" content="잘 작성된 소스 코드를 분석하는 것은 프로그래밍 실력을 늘리는 좋은 방법이다. jQuery 자바스크립트 라이브러리는 웹 개발자라면 누구나 한 번쯤 들어봤을 정도로 웹 개발시 필요한 DOM 파싱, 이벤트 처리, Ajax.." ><meta property="og:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2541853857EA02BC16" ><meta property="article:section" content="IT 인터넷" >
+<!-- END OPENGRAPH -->
+
+
+
+<!-- BEGIN TWITTERCARD -->
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@TISTORY"><meta name="twitter:title" content="jQuery 소스 구조분석을 해야하는 이유" ><meta name="twitter:description" content="잘 작성된 소스 코드를 분석하는 것은 프로그래밍 실력을 늘리는 좋은 방법이다. jQuery 자바스크립트 라이브러리는 웹 개발자라면 누구나 한 번쯤 들어봤을 정도로 웹 개발시 필요한 DOM 파싱, 이벤트 처리, Ajax.." ><meta property="twitter:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2541853857EA02BC16" >
+<!-- END TWITTERCARD -->
+
+
+
+<!-- BEGIN DAUMAPP -->
+<meta property="dg:plink" content="https://boycoding.tistory.com/45" ><meta name="plink" content="https://boycoding.tistory.com/45" ><meta name="title" content="jQuery 소스 구조분석을 해야하는 이유" ><meta name="article:media_name" content="소년코딩" ><meta property="article:mobile_url" content="https://boycoding.tistory.com/m/45" ><meta property="article:pc_url" content="https://boycoding.tistory.com/45" ><meta property="article:mobile_view_url" content="https://boycoding.tistory.com/m/45" ><meta property="article:pc_view_url" content="https://boycoding.tistory.com/45" ><meta property="article:talk_channel_view_url" content="https://boycoding.tistory.com/m/45" ><meta property="article:pc_service_home" content="https://www.tistory.com" ><meta property="article:mobile_service_home" content="https://www.tistory.com/m" ><meta property="article:txid" content="2351996_45" /><meta property="article:published_time" content="2016-09-27T14:23:25+09:00" ><meta property="og:regDate" content="20160927142325" ><meta property="article:modified_time" content="2016-09-27T14:38:03+09:00" >
+<!-- END DAUMAPP -->
+
+
+
+<!-- BEGIN STRUCTURED_DATA -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":{"@id":"https:\/\/boycoding.tistory.com\/45"},"url":"https:\/\/boycoding.tistory.com\/45","headline":"jQuery \uc18c\uc2a4 \uad6c\uc870\ubd84\uc11d\uc744 \ud574\uc57c\ud558\ub294 \uc774\uc720","description":"\uc798 \uc791\uc131\ub41c \uc18c\uc2a4 \ucf54\ub4dc\ub97c \ubd84\uc11d\ud558\ub294 \uac83\uc740 \ud504\ub85c\uadf8\ub798\ubc0d \uc2e4\ub825\uc744 \ub298\ub9ac\ub294 \uc88b\uc740 \ubc29\ubc95\uc774\ub2e4. jQuery \uc790\ubc14\uc2a4\ud06c\ub9bd\ud2b8 \ub77c\uc774\ube0c\ub7ec\ub9ac\ub294 \uc6f9 \uac1c\ubc1c\uc790\ub77c\uba74 \ub204\uad6c\ub098 \ud55c \ubc88\ucbe4 \ub4e4\uc5b4\ubd24\uc744 \uc815\ub3c4\ub85c \uc6f9 \uac1c\ubc1c\uc2dc \ud544\uc694\ud55c DOM \ud30c\uc2f1, \uc774\ubca4\ud2b8 \ucc98\ub9ac, Ajax..","author":{"@type":"Person","name":"\uc18c\ub144\ucf54\ub529"},"image":{"@type":"ImageObject","url":"https:\/\/img1.daumcdn.net\/thumb\/R800x0\/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2541853857EA02BC16","width":"800px","height":"800px"},"datePublished":"20160927T14:23:25+09:00","dateModified":"20160927T14:38:03+09:00","publisher":{"@type":"Organization","name":"TISTORY","logo":{"@type":"ImageObject","url":"https:\/\/t1.daumcdn.net\/tistory_admin\/static\/images\/openGraph\/opengraph.png","width":"800px","height":"800px"}}}</script>
+<!-- END STRUCTURED_DATA -->
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script> <script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "99854e452c8258"; wcs_do(); </script>
+	
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6769367508057358",
+          enable_page_level_ads: true
+     });
+</script>
+	<script>
+        /* Main Page Redirect by Readiz */
+        var urlAddr = decodeURIComponent(location.href);urlAddr = urlAddr.replace('http://','').replace('https://','');urlAddr = urlAddr.split('#')[0]; urlAddr = urlAddr.split('?')[0];
+        var url = urlAddr.split('/');
+        if(url[1] == '') { location.href = '/category' }
+    </script>
+    <meta name="naver-site-verification" content="2f3b6aeb10f65d53d769e4c89a54e851c486400c"/>
+    <meta name="google-site-verification" content="WN8Yr8Kbt7o8l2S7VUy9iKr705sEmZA3Ui6xQawkyXg" />
+	<meta name="naver-site-verification" content="2f3b6aeb10f65d53d769e4c89a54e851c486400c"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://tistory3.daumcdn.net/tistory/2351996/skin/images/style_core_ver_1.4.css" />
+    <link rel="stylesheet" href="https://tistory3.daumcdn.net/tistory/2351996/skin/style.css?_T_=1583058445" />
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="alternate" type="application/rss+xml" title="소년코딩" href="https://boycoding.tistory.com/rss" />
+    <style>code {  margin: 0 2px;  color: #e96900;  padding: 3px 5px;  font-size: 1em;  -webkit-border-radius: 2px;  border-radius: 2px;  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;  background-color: #f8f8f8;  }</style>
+    <!--
+        *** 마스크 아이콘 ***
+        이것은 Safari의 사이트 고정, Touch Bar의 아이콘으로 사용됩니다.
+        여기에서는 아이콘의 컬러를 변경할 수 있습니다.
+    -->
+    <link rel="mask-icon" href="https://tistory3.daumcdn.net/tistory/2351996/skin/images/hero_mask_icon.svg" color="#f1631b" />
+    <title>jQuery 소스 구조분석을 해야하는 이유</title>
+	
+    <script>
+        var disqus_shortname = "[shortname]", /* DISQUS 단축 이름 */
+            back_to_category = "다른 글 읽어보기", /* 모바일 모드 '다른 글 읽어보기' 버튼의 문구 */
+
+            title = "소년코딩",
+            siteCDN = "https://tistory3.daumcdn.net/tistory/2351996/skin/images/";
+    </script>
+	<link rel="stylesheet" href="	https://highlightjs.org/static/demo/styles/atom-one-dark.css" >
+    <!--<link rel="stylesheet" href="http://oppacoding.dothome.co.kr/ckeditor/plugins/codesnippet/lib/highlight/styles/obsidian.css" >-->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        var head=document.getElementsByTagName("head")[0],AnimationFrame=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;</script><script>var loadStyleAsync=function(){var b=document.createElement("link");b.rel="stylesheet";b.href=siteCDN+"style_async_ver_1.4.css";head.appendChild(b);var c=document.createElement("link");c.rel="stylesheet";c.href=siteCDN+"style_async_icon_ver_1.4.css";head.appendChild(c);};AnimationFrame?AnimationFrame(loadStyleAsync):window.addEventListener("load",loadStyleAsync);
+</script>
+    <script>
+        var avatarURL="https://t1.daumcdn.net/cfile/tistory/265C1A4F57DD23A219";
+    </script>
+    <script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script defer src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_services_ver_1.4.js"></script>
+    <script async src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_typekit_ver_1.4.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/plugins/TistoryProfileLayer/style.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5" />
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/plugins/TistoryProfileLayer/profile.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"></script>
+	<style type="text/css">
+		.another_category { border: 1px solid #E5E5E5; padding: 10px 10px 5px; margin:10px 0; clear: both; }
+		.another_category h4 { font-size: 12px !important; margin: 0 !important; border-bottom: 1px solid #E5E5E5 !important; padding: 2px 0 6px !important; }
+		.another_category h4 a { font-weight: bold !important; }
+		.another_category table { table-layout: fixed; border-collapse: collapse; width: 100% !important; margin-top: 10px !important; }
+		* html .another_category table { width: auto !important; }
+		*:first-child+html .another_category table { width: auto !important; }
+		.another_category th, .another_category td { padding: 0 0 4px !important; }
+		.another_category th { text-align: left; font-size: 12px !important; font-weight: normal;  word-break: break-all; overflow: hidden; line-height: 1.5; }
+		.another_category td { text-align: right; width: 80px; font-size: 11px; }
+		.another_category th a { font-weight: normal; text-decoration: none; border: none !important; }
+		.another_category th a.current{ font-weight: bold; text-decoration: none !important; border-bottom: 1px solid !important; }
+		.another_category th span { font-weight: normal; text-decoration: none; font: 10px Tahoma, Sans-serif; border: none !important; }
+
+		.another_category_color_gray, .another_category_color_gray h4 { border-color: #E5E5E5 !important; }
+		.another_category_color_gray * { color: #909090 !important; }
+		.another_category_color_gray th a.current{border-color:#909090 !important;}
+		.another_category_color_gray h4, .another_category_color_gray h4 a { color: #737373 !important; }
+
+
+		.another_category_color_red, .another_category_color_red h4 { border-color: #F6D4D3 !important;  }
+		.another_category_color_red * { color: #E86869 !important; }
+		.another_category_color_red th a.current{border-color:#E86869 !important;}
+		.another_category_color_red h4, .another_category_color_red h4 a { color: #ED0908 !important; }
+
+
+		.another_category_color_green, .another_category_color_green h4 { border-color: #CCE7C8 !important; }
+		.another_category_color_green * { color: #64C05B !important; }
+		.another_category_color_green th a.current{border-color:#64C05B !important;}
+		.another_category_color_green h4, .another_category_color_green h4 a { color: #3EA731 !important; }
+
+
+		.another_category_color_blue, .another_category_color_blue h4 { border-color: #C8DAF2 !important; }
+		.another_category_color_blue * { color: #477FD6 !important; }
+		.another_category_color_blue th a.current{border-color:#477FD6 !important;}
+		.another_category_color_blue h4, .another_category_color_blue h4 a { color: #1960CA !important; }
+
+
+		.another_category_color_violet, .another_category_color_violet h4 { border-color: #E1CEEC !important;  }
+		.another_category_color_violet * { color:#9D64C5 !important; }
+		.another_category_color_violet th a.current{border-color:#9D64C5 !important;}
+		.another_category_color_violet h4, .another_category_color_violet h4 a { color: #7E2CB5 !important; }
+	</style>
+<script type="text/javascript">
+        
+        window.TistoryBlog = {
+            basePath: "",
+            url: "https://boycoding.tistory.com",
+            tistoryUrl: "https://boycoding.tistory.com",
+			manageUrl: 'https://boycoding.tistory.com/manage',
+            token: 'Rvnb+eQ0OlwoNxPuizdHKw=='
+        };
+        var servicePath = "";
+        var blogURL = "";
+    </script>
+
+	<script> (function() { window.orgjQuery = window.jQuery; window.jQuery = tjQuery })()</script>
+    <script type="text/javascript" defer src=https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/reaction/reaction-button-container.min.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5></script>
+    <script src="https://t1.daumcdn.net/section/uoclike/news/uoclike.min.js"></script>
+	<script> (function() { window.jQuery = window.orgjQuery; delete window.orgjQuery })()</script>
+    <script>
+		(function($) {
+			$.fn.extend({
+				size: function () {
+					return this.length
+				}
+			});
+			$.fn.UOCLike.defaults.updateServiceCategory = true;
+					})(tjQuery)
+    </script>
+        <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/_/base.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"></script>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/style/dialog.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"/>
+            <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/www/style/top/font.css">
+    <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/style/postBtn.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"/>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/style/component/tistory.css?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5" />
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script></head>
+<body>
+<script type="text/javascript">
+	(function() {
+		if (!window.T) {
+			window.T = {}
+		}
+		window.T.config = {"TOP_SSL_URL":"https:\/\/www.tistory.com","PREVIEW":false,"ROLE":"guest","PREV_PAGE":"\/46","NEXT_PAGE":"\/44","BLOG":{"isDormancy":false,"title":"\uc18c\ub144\ucf54\ub529"},"NEED_COMMENT_LOGIN":false,"COMMENT_LOGIN_CONFIRM_MESSAGE":"","LOGIN_URL":"https:\/\/www.tistory.com\/auth\/login\/?redirectUrl=http%3A%2F%2Fboycoding.tistory.com%2F45","DEFAULT_URL":"https:\/\/boycoding.tistory.com","USER":{"name":null,"homepage":null},"ROLE_GROUP":"visitor","SUBSCRIPTION":{"status":"none","isConnected":false,"isProcessing":false,"isPending":false,"isWait":false,"isNone":true},"IS_LOGIN":false,"HAS_BLOG":false,"TOP_URL":"http:\/\/www.tistory.com"};
+		window.appInfo = {"domain":"tistory.com","topUrl":"https:\/\/www.tistory.com","loginUrl":"https:\/\/www.tistory.com\/auth\/login","logoutUrl":"https:\/\/www.tistory.com\/auth\/logout"};
+
+        window.initData = {};
+        
+	})();
+</script>
+
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/blog/common.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"></script>
+<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+    <div id="wrap">
+        <div id="l-ad" style="display: none; width:150px; position:absolute; top: 100px; z-index: 9999;"></div>
+
+        <div class="jacket-cover desktop"></div>
+        <div id="side" class="hue">
+            <header id="site-title" class="hue">
+                <a class="site-link" href="/">
+                    <!--
+                        *** Trademark Kit ***
+                        no-trademark-kit/trademark-kit: Trademark Kit 설정
+                    -->
+                    <div class="cover trademark-kit">
+                        <h1 id="title" class="pseudo">소년코딩</h1>
+                    </div>
+                </a>
+                <button class="no-text mobile depth toggle event" data-event="toggle">메뉴</button>
+                <div class="mobile side-button-wrap search-button-wrap">
+                    <button class="no-text depth pseudo search event" data-event="search">검색</button>
+                </div>
+                <div class="mobile side-button-wrap top-button-wrap">
+                    <button class="no-text mobile depth pseudo top-button event" data-event="top">맨 위로</button>
+                </div>
+            </header>
+            <div id="side-wrap">
+                <!--
+                    *** 메뉴/카테고리 ***
+                    show-menu/show-menu-mobile/hide-menu: 메뉴 보이기/모바일에서만 보이기/숨기기
+                    show-category/hide-category: 카테고리 위젯 보이기/숨기기
+                    show-total/hide-total: 카테고리 위젯의 모든 카테고리 보이기/숨기기
+                    open-sub-category/close-sub-category: 카테고리 위젯의 하위 카테고리 열기/닫기
+                    show-guestbook/hide-guestbook: 방명록 링크 보이기/숨기기
+                    normal-jacket-mobile/expanded-jacket-mobile: 기본/확장 모바일 모드 메뉴의 Jacket 스타일
+                    parallax/no-parallax: 모바일 모드 메뉴의 Jacket에 시각 차이 설정/해제
+                -->
+                <aside id="side-nav" class="show-menu hide-total show-category close-sub-category show-guestbook normal-jacket-mobile parallax">
+                    <div id="side-nav-wrap">
+                        <div id="side-cover" class="mobile"><div id="jacket-mobile" class="jacket-cover mobile top"></div></div>
+                        <nav id="menu">
+                            <ul>		<li class="t_menu_category first">
+			<a href="/category/">소년코딩 홈</a>
+		</li>
+				<li class="t_menu_link_1">
+			<a href="http://boycoding.tistory.com/24">About 소년코딩</a>
+		</li>
+				<li class="t_menu_link_2">
+			<a href="http://github.com/adunStudio" target="_blank">GitHub</a>
+		</li>
+				<li class="t_menu_link_3 last">
+			<a href="https://www.youtube.com/channel/UCuQBTTSy34WdjFHzo3CeC5Q" target="_blank">Youtube</a>
+		</li>
+		</ul>
+                        </nav>
+                        <nav id="category">
+                            <ul class="tt_category">
+	<li class="">
+		<a class="link_tit" href="/category">
+			소년코딩 전체 이야기 목록							<span class="c_cnt">(207)</span>
+			
+					</a>
+
+				<ul class="category_list">
+							<li class="">
+					<a class="link_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						자바스크립트 이야기													<span class="c_cnt">(63)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/%EA%B8%B0%EB%B3%B8%20%EA%B0%95%EC%A2%8C">
+									기본 강좌
+																			<span class="c_cnt">(45)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8">
+									자바스크립트
+																			<span class="c_cnt">(2)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B2%8C%EC%9E%84%20%EC%97%94%EC%A7%84%20%EC%8A%A4%ED%84%B0%EB%94%94">
+									자바스크립트 게임 엔진 스터디
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0">
+									자료구조
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/jQuery">
+									jQuery
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/TypeScript-STL">
+									TypeScript-STL
+																			<span class="c_cnt">(0)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%9C%A0%EB%8B%88%ED%8B%B0%20%26%20C%23%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						유니티 &amp; C# 이야기													<span class="c_cnt">(2)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						알고리즘 이야기													<span class="c_cnt">(0)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4">
+						프로그래머스													<span class="c_cnt">(8)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/Level%201">
+									Level 1
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4">
+						디자인 패턴													<span class="c_cnt">(15)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						C++ 이야기													<span class="c_cnt">(101)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/01.%20C%2B%2B%20%EA%B8%B0%EC%B4%88">
+									01. C++ 기초
+																			<span class="c_cnt">(13)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/02.%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%ED%98%95">
+									02. 기본 자료형
+																			<span class="c_cnt">(10)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/03.%20%EC%97%B0%EC%82%B0%EC%9E%90">
+									03. 연산자
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/04.%20%EC%8A%A4%EC%BD%94%ED%94%84">
+									04. 스코프
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/05.%20%EB%8B%A4%EC%96%91%ED%95%9C%20%ED%83%80%EC%9E%85">
+									05. 다양한 타입
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/06.%20%EC%A0%9C%EC%96%B4%EB%AC%B8">
+									06. 제어문
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/07.%20%EB%B0%B0%EC%97%B4%2C%20%EB%AC%B8%EC%9E%90%EC%97%B4%2C%20%ED%8F%AC%EC%9D%B8%ED%84%B0%20%EB%B0%8F%20%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4">
+									07. 배열, 문자열, 포인터 및 레퍼런스
+																			<span class="c_cnt">(22)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/08.%20%ED%95%A8%EC%88%98">
+									08. 함수
+																			<span class="c_cnt">(11)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/09.%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D">
+									09. 객체지향 프로그래밍
+																			<span class="c_cnt">(5)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/FBX%20SDK">
+									FBX SDK
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/C%2B%2B%20%EC%9D%B4%EC%95%BC%EA%B8%B0/%EC%9E%A1%EB%8B%B4">
+									잡담
+																			<span class="c_cnt">(2)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%88%98%ED%95%99%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						수학 이야기													<span class="c_cnt">(4)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EA%B2%9C%EA%B3%B5%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						겜공 이야기													<span class="c_cnt">(8)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%BB%B4%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						컴구 이야기													<span class="c_cnt">(3)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%9B%B9%EC%95%B1%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						웹앱 이야기													<span class="c_cnt">(2)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%86%8C%EB%85%84%20%EC%9D%B4%EC%95%BC%EA%B8%B0">
+						소년 이야기													<span class="c_cnt">(1)</span>
+						
+											</a>
+
+					
+				</li>
+					</ul>
+			</li>
+</ul>
+                        </nav>
+                        <nav class="sub">
+                            <ul>
+                                <li><a class="event" data-event="search" href="javascript:;">검색</a></li>
+                                <li><a class="event" data-event="info" href="javascript:;">이 블로그에 관하여</a></li>
+                                <li class="guestbook-list"><a href="/guestbook">안부 남기기</a></li>
+                            </ul>
+                        </nav>
+                        <ul id="site-func">
+                            <li><a class="no-text depth pseudo tistory" href="http://tistory.com" target="_blank" title="티스토리로 이동">티스토리</a></li>
+                            <li><a class="no-text depth pseudo add event" data-event="add" href="javascript:;" title="소년코딩 블로그 추가하기…">소년코딩 블로그 추가하기</a></li>
+                            <li><a class="no-text depth pseudo feed" href="https://boycoding.tistory.com/rss" target="_blank" title="Feed 구독하기">Feed 구독하기</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <button class="no-text mobile close event" data-event="close">닫기</button>
+        </div>
+        <div id="contents">
+            
+            
+            
+            
+            
+                <script>
+                    var loadStyleArticle=function(){var a=document.createElement("link");a.rel="stylesheet";a.href=siteCDN+"style_article_ver_1.4.css";head.appendChild(a);var b=document.createElement("link");b.rel="stylesheet";b.href=siteCDN+"style_activity_ver_1.4.css";head.appendChild(b);var c=document.createElement("link");c.rel="stylesheet";c.href=siteCDN+"style_comments_ver_1.4.css";head.appendChild(c);};AnimationFrame?AnimationFrame(loadStyleArticle):window.addEventListener("load",loadStyleArticle);
+                </script>
+                <script defer src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_comments_ver_1.4.js"></script>
+                <script defer src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_article_ver_1.4.js"></script>
+                <script defer src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_article_contents_ver_1.4.js"></script>
+               
+
+                <article class="section article-entry">
+                    <header class="title">
+                        <div class="title-wrapper">
+                            <div class="title-part">
+                                <h2 class="headline"><a id="headline" href="/45">jQuery 소스 구조분석을 해야하는 이유</a></h2>
+                                <span class="subcopy"><span>2016. 9. 27. 14:23</span><span class="author"> - <span>소년코딩</span></span></span>
+                                <ul id="get" style="display:none">
+                                    <li><a id="get-category" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/jQuery">자바스크립트 이야기/jQuery</a></li>
+                                    <li><a id="get-id" href="/45">이 글의 ID로 URL 전환</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </header>
+                    <!--
+                        *** 본문 글 ***
+                        inside-caption/outside-caption: 내장형/외장형 이미지 캡션
+                        caption-blind: 내장형 이미지 캡션 블라인드 효과
+                        no-force-expand/force-expand: 외장형 이미지 캡션의 이미지 강제 확장
+                        manual-margin/auto-margin: 자동 여백
+                        no-font-face/font-face: 서체 모양 강제 동기화
+                        no-font-size/font-size: 서체 크기 강제 동기화
+                    -->
+                    <div id="article" class="outside-caption caption-blind no-force-expand auto-margin font-face no-font-size">
+                        <!-- AdSense Kit 상단 -->
+                        <aside class="adsense-kit adsense-top">
+                            <div class="adsense-content">
+                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6769367508057358" data-ad-slot="5428249228" data-ad-format="horizontal"></ins>
+                                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                            </div>
+                        </aside>
+                        <div style="float:right;margin:0 0 10px 10px;"><ins class="kakao_ad_area" style="display:none;" 
+ data-ad-unit    = "DAN-tol6cb7bbejm" 
+ data-ad-width   = "250" 
+ data-ad-height  = "250"></ins> 
+<script type="text/javascript" src="//t1.daumcdn.net/adfit/static/ad.min.js" async></script></div><blockquote class="tx-quote-tistory"><p>잘 작성된 소스 코드를 분석하는 것은 프로그래밍 실력을 늘리는 좋은 방법이다.</p></blockquote><p>jQuery 자바스크립트 라이브러리는 웹 개발자라면 누구나 한 번쯤 들어봤을 정도로</p><p>웹 개발시 필요한 DOM 파싱, 이벤트 처리, Ajax 같은 기능 등을 아주 쉽게 작성할 수 있게 도와주는 라이브러리다.</p><p><br /></p><p>많은 초보 개발자들이 jQuery의 원리를 모르고 Reference를 외워서 사용한다.</p><p>결국 jQuery가 없으면 DOM 핸들링이 불가능할 정도인데</p><p>jQuery는 자바스크립트 DOM API 위에서 만들어진 응용 라이브러리 일뿐이다.</p><p><br /></p><p>소년코딩은 jQuery의 1.11.3 버전을 분석하며 공부를 할 것이다.</p><p>무려 1만여 줄이나 하는 대단한 라이브러리이고 또한 대단한 공부가 될 거다.</p><p><br /></p><p>하지만 여기서 1만여 줄 모두를 세세하게 하나하나 분석하며 다루지는 않고,</p><p>jQuery의 전체적인 흐름과&nbsp;자신이 쓰는 API의 원리를 이해하면 충분할 것이다.&nbsp;</p><p><br /></p><p>jQuery 소스는 <a href="http://code.jquery.com/jquery-1.11.3.js" target="_blank" class="tx-link">http://code.jquery.com/jquery-1.11.3.js</a>에서 다운받을&nbsp;수 있다.</p><hr><p style="text-align: center; clear: none; float: none;"><br /></p><p style="text-align: center; clear: none; float: none;"><span class="imageblock" style="display:inline-block;width:100px;width: 100px; height: 100px;;height:auto;max-width:100%"><span data-url="https://t1.daumcdn.net/cfile/tistory/2541853857EA02BC16?download" data-lightbox="lightbox"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F2541853857EA02BC16A42E" src="https://t1.daumcdn.net/cfile/tistory/2541853857EA02BC16" style="cursor: pointer;max-width:100%;height:auto" width="100" height="100" alt="jquery" filename="jQurery.gif" filemime="image/gif" style="width: 100px; height: 100px;" original="yes" /></span></span></p><p style="text-align: center; clear: none; float: none;">by&nbsp;<b><a href="http://boycoding.tistory.com/" target="_blank" class="tx-link"><span style="color: rgb(0, 85, 255);">소년코딩</span></a></b></p><p style="text-align: center; clear: none; float: none;">추천은 글쓴이에게 큰 도움이 됩니다.</p><p style="text-align: center; clear: none; float: none;">악플보다 무서운 무플, 댓글은 블로그 운영에 큰 힘이됩니다.</p><div class="container_postbtn #post_button_group">
+    <div class="postbtn_like">
+        
+    <script>
+        window.ReactionButtonType = 'reaction';
+        window.ReactionApiUrl = '//boycoding.tistory.com/reaction';
+        window.ReactionReqBody = {
+            entryId: 45        }
+    </script>
+    <div class="wrap_btn" id=reaction-45></div>
+    <script src=https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/reaction/reaction-button-container.min.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5></script>
+        <div class="wrap_btn wrap_btn_share">
+    <button type="button" class="btn_post sns_btn btn_share" data-thumbnail-url="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2541853857EA02BC16" data-title="jQuery 소스 구조분석을 해야하는 이유" data-description="잘 작성된 소스 코드를 분석하는 것은 프로그래밍 실력을 늘리는 좋은 방법이다. jQuery 자바스크립트 라이브러리는 웹 개발자라면 누구나 한 번쯤 들어봤을 정도로 웹 개발시 필요한 DOM 파싱, 이벤트 처리, Ajax.." data-profile-image="https://t1.daumcdn.net/cfile/tistory/265C1A4F57DD23A219" data-profile-name="소년코딩" data-pc-url="https://boycoding.tistory.com/45" data-relative-pc-url="/45" data-blog-title="소년코딩">
+        <span class="ico_postbtn ico_share">공유하기</span>
+    </button>
+</div>
+                <div class="wrap_btn wrap_btn_etc" data-entry-id="45" data-entry-visibility="public" data-category-visibility="public">
+    <button type="button" class="btn_post btn_etc2"><span class="ico_postbtn ico_etc">글 요소</span></button>
+</div>
+    </div>
+    <button type="button" class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="2351996" data-url="https://boycoding.tistory.com/45" data-device="web_pc">
+    <em class="txt_state">구독하기</em>
+    <strong class="txt_tool_id">소년코딩</strong>
+    <span class="img_common_tistory ico_check_type1"></span>
+</button>
+    <div class="postbtn_ccl" data-ccl-type="">
+    <a href="https://creativecommons.org/licenses//4.0/deed.ko" target="_blank" class="link_ccl">
+        <span class="bundle_ccl">
+                    </span>
+    </a>
+</div>
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+        <license rdf:resource="http://creativecommons.org/licenses/by-/2.0/kr/" />
+    </Work>
+    <License rdf:about="http://creativecommons.org/licenses/by-/">
+        <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+                    </License>
+</rdf:RDF>
+-->
+</div><div class="another_category another_category_color_gray">
+<h4>'<a href="/category/자바스크립트%20이야기">자바스크립트 이야기</a>&nbsp;>&nbsp;<a href="/category/자바스크립트%20이야기/jQuery">jQuery</a>' 카테고리의 다른 글</h4>
+<table>
+<tr>
+<th>
+<a href="/50?category=916000" >jQuery 소스 구조분석 5. jQuery.fn.init</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.28</td>
+</tr>
+<tr>
+<th>
+<a href="/49?category=916000" >jQuery 소스 구조분석 4. 객체 확장 extend() 메서드</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.27</td>
+</tr>
+<tr>
+<th>
+<a href="/48?category=916000" >jQuery 소스 구조분석 3. jQuery.prototype</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.27</td>
+</tr>
+<tr>
+<th>
+<a href="/47?category=916000" >jQuery 소스 구조분석 2. 함수 객체, $</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.27</td>
+</tr>
+<tr>
+<th>
+<a href="/46?category=916000" >jQuery 소스 구조분석 1. IIFE(즉시 함수 호출 표현식)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.27</td>
+</tr>
+<tr>
+<th>
+<a href="/45?category=916000"  class ="current" >jQuery 소스 구조분석을 해야하는 이유</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2016.09.27</td>
+</tr>
+</table></div>
+
+
+                        <script>
+                            // 오른쪽 애드센스
+                            // id: l-ad
+                            setTimeout(function() {
+                                if($(document).width() >=1440) {
+                                    var $contents = $('#contents');
+                                    var $lad = $('#l-ad');
+                                    var contents = $contents.offset();
+                                    var right = contents.left + $contents.width() + 10;
+                                    $lad.css("left", right);
+                                    $lad.show();
+                                    var adscript = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6769367508057358" data-ad-slot="8025985227" data-ad-format="auto"></ins>';
+                                    $lad.append(adscript);
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+
+                                    $(window).resize(function(){
+                                        if($(document).width() >=1440) {
+                                            $("#l-ad").show();
+                                            var contents = $contents.offset();
+                                            var right = contents.left + $contents.width() + 10;
+                                            $lad.css("left", right);
+                                        } else {
+                                            $lad.hide();
+                                        }
+                                    });
+
+																	var scrollTop = $(document).scrollTop();
+                                    $(document).scroll(function () {
+                                        var top = $(document).scrollTop();
+																			  var view_height = $(window).height();
+																			  var document_height = $(document).height();
+																			  var ad_height = 600;
+																			  var n = Math.floor(top / view_height);
+																	
+																			
+																			if(view_height < ad_height) return;
+																			/*if(top > (document_height - 1000))
+																				{  return;}*/
+																				
+																			
+																			if(top > scrollTop)
+																				{
+																					if( n % 2 == 1 )
+																					{
+																					  	if((n+1) * view_height + 100 + 500 > document_height) return;
+
+
+																						 $lad.css("top", (n + 1) * view_height + 100);
+                                        		 $lad.css("bottom", '');
+																					}
+																					
+																		
+																				}
+																			else
+																				{
+																					if(n % 2 == 0)
+																					{
+																						if(n * view_height + 100 + 500 > document_height) return;
+																						 $lad.css("top", (n   ) * view_height + 100);
+                                        		 $lad.css("bottom", '');
+																					}
+																				}
+																			  
+																			 
+																			scrollTop = top;
+																			/*if(height >= ($(document).height() - 2000))
+																				{
+																						$lad.css("bottom", 560);
+                                            $lad.css("top", '');
+																				}
+																			  else if(height >= 2000) {
+																				    $lad.css("top", 2800);
+                                            $lad.css("bottom", '');
+																				}
+                                        else if(height >=700) {
+																						$lad.css("top", 1500);
+                                            $lad.css("bottom", '');
+																					
+                                            
+                                        } 
+																	      else {
+                                            $lad.css("top", 100);
+                                            $lad.css("bottom", '');
+                                        }*/
+																			  //console.log(n);
+                                    });
+                                };
+                                /**
+                                 **/
+                            }, 1000);
+                        </script>
+
+                        
+                            <div id="tag-trail" class="tag-trail">
+                                <span>Tag</span><a href="/tag/jQuery"  rel="tag">jQuery</a>,
+<a href="/tag/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"  rel="tag">자바스크립트</a>
+                            </div>
+                        
+
+                        <!-- 페이지수준(모바일)-->
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({
+                                google_ad_client: "ca-pub-6769367508057358",
+                                enable_page_level_ads: true
+                            });
+                        </script>
+                        <!-- AdSense Kit 하단 -->
+                        <!-- 소년코딩 글 하단 -->
+
+                        <!-- AdSense Kit 하단 -->
+
+                        <aside class="adsense-kit adsense-bottom">
+                            <div class="adsense-content">
+                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6769367508057358" data-ad-slot="9858448825" data-ad-format="rectangle, horizontal"></ins>
+                                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                            </div>
+                        </aside>
+
+                    </div>
+                    <nav id="activity">
+                        <ul>
+                            <li class="show-comments"><a class="pseudo depth-mobile act-event" data-act="comments" href="javascript:;">댓글</a></li>
+                            <li class="show-related"><a class="pseudo depth-mobile act-event" data-act="related" href="javascript:;">다른 이야기</a></li>
+                            <li class="show-share"><a class="pseudo depth-mobile act-event" data-act="share" href="javascript:;">공유</a></li>
+                            <li class="show-info"><a class="pseudo depth-mobile act-event" data-act="info" href="javascript:;">이 블로그에 관하여</a></li>
+                        </ul>
+                    </nav>
+                    <div class="activity-section comments-entry">
+                        <nav class="comments-switch">
+                            <ul class="switch" style="list-style:none">
+                                <li><a class="tistory-comments-button comm-event" data-comm="tistory" href="javascript:;">일반</a></li>
+                                <li><a class="disqus-comments-button comm-event" data-comm="disqus" href="javascript:;">소셜</a></li>
+                            </ul>
+                        </nav>
+                        <!-- DISQUS Kit 글 -->
+                        <!--
+                        <div class="disqus">
+                            <script>
+                                var loadStyleDisqus=function(){var a=document.createElement("link");a.rel="stylesheet";a.href=siteCDN+"style_disqus_ver_1.4.css";head.appendChild(a)};AnimationFrame?AnimationFrame(loadStyleDisqus):window.addEventListener("load",loadStyleDisqus);
+                            </script>
+                            <script defer src="https://tistory3.daumcdn.net/tistory/2351996/skin/images/core_disqus_ver_1.4.js"></script>
+                            <div id="disqus_thread">
+                                <span class="loading pseudo no-text">DISQUS 로드 중…</span>
+                            </div>
+                        </div>
+                        -->
+                        <div class="comments">
+                            <div id="entry45Comment">
+                                <img src="https://cdn.rawgit.com/kaniwari/rylai/master/images/global/transparent.png" onload="javascript:comments();$('.comments>.loading').remove();$('.comments').addClass('loaded')" style="display:none" />
+                                
+                                <form method="post" action="/comment/add/45" onsubmit="return false" style="margin: 0">
+                                    <div class="comment-write pseudo">
+                                        
+                                            
+                                                <div class="guest-field">
+                                                    <div class="username-field">
+                                                        <label for="username">이름</label>
+                                                        <input id="username" type="text" name="name" value="" />
+                                                    </div>
+                                                    <div class="password-field">
+                                                        <label for="password">비밀번호</label>
+                                                        <input id="password" type="password" name="password" value="" />
+                                                    </div>
+                                                    <div class="url-field">
+                                                        <label for="url">URL</label>
+                                                        <input id="url" type="url" name="homepage" value="" />
+                                                    </div>
+                                                </div>
+                                            
+                                            <div class="secret-field">
+                                                <input id="secret" type="checkbox" name="secret" />
+                                                <label for="secret"><span>비공개</span></label>
+                                            </div>
+                                        
+                                        <label class="textarea-label" for="textarea">댓글을 남겨주세요</label>
+                                        <textarea id="textarea" name="comment" rows="10" cols="50"></textarea>
+                                        <button class="comment-submit" onclick="addComment(this, 45); return false;">댓글 남기기</button>
+                                    </div>
+                                </form>
+                            </div><script type="text/javascript">loadedComments[45]=true;findFragmentAndHighlight(45)</script>
+                            <span class="loading no-text pseudo">댓글 로드 중…</span>
+                        </div>
+                    </div>
+                    <!--
+                        *** 카테고리의 다른 글 ***
+                        gallery/text-only: 갤러리형/텍스트형 다른 카테고리 스타일
+                        no-blind/semi-blind/blind: 갤러리형 블라인드 조절
+                        show-text/hide-text: 갤러리형 텍스트 보이기/숨기기
+                        bright-text/dark-text: 갤러리형 검정 바탕에 흰색 텍스트/흰색 바탕에 검정 텍스트
+                        no-text-shadow/text-shadow: 갤러리형 텍스트 그림자 조절
+                    -->
+                    <div id="related" class="activity-section text-only blind show-text bright-text no-text-shadow">
+                        <h4>카테고리의 다른 이야기 목록</h4>
+                        <div class="related-wrap">
+                            <ul class="related-content" style="list-style:none">
+                                
+                                    
+                                        <li class="thumb_type">
+                                            <a class="depth-desktop-device related-link" href="/49?category=916000">
+                                                
+                                                    <img class="related-thumb" src="//i1.daumcdn.net/thumb/C640x640/?fname=https://t1.daumcdn.net/cfile/tistory/22651A4257EA08AB35" alt="미리보기">
+                                                
+                                                <div class="related-headline">
+                                                    <span>2016.09.27</span>
+                                                    <p>jQuery 소스 구조분석 4. 객체 확장 extend() 메서드</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    
+                                        <li class="thumb_type">
+                                            <a class="depth-desktop-device related-link" href="/48?category=916000">
+                                                
+                                                    <img class="related-thumb" src="//i1.daumcdn.net/thumb/C640x640/?fname=https://t1.daumcdn.net/cfile/tistory/235F373B57EA068503" alt="미리보기">
+                                                
+                                                <div class="related-headline">
+                                                    <span>2016.09.27</span>
+                                                    <p>jQuery 소스 구조분석 3. jQuery.prototype</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    
+                                        <li class="thumb_type">
+                                            <a class="depth-desktop-device related-link" href="/47?category=916000">
+                                                
+                                                    <img class="related-thumb" src="//i1.daumcdn.net/thumb/C640x640/?fname=https://t1.daumcdn.net/cfile/tistory/263ABB3F57EA04290F" alt="미리보기">
+                                                
+                                                <div class="related-headline">
+                                                    <span>2016.09.27</span>
+                                                    <p>jQuery 소스 구조분석 2. 함수 객체, $</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    
+                                        <li class="thumb_type">
+                                            <a class="depth-desktop-device related-link" href="/46?category=916000">
+                                                
+                                                    <img class="related-thumb" src="//i1.daumcdn.net/thumb/C640x640/?fname=https://t1.daumcdn.net/cfile/tistory/2654B54057EA035D14" alt="미리보기">
+                                                
+                                                <div class="related-headline">
+                                                    <span>2016.09.27</span>
+                                                    <p>jQuery 소스 구조분석 1. IIFE(즉시 함수 호출 표현식)</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    
+                                
+                                <li class="function space no-display"><div></div></li>
+                                <li class="function space no-display"><div></div></li>
+                                <li class="function space no-display"><div></div></li>
+                                <li class="function space no-display"><div></div></li>
+                                <li class="function search no-display">
+                                    <a class="depth-desktop-device related-link event" data-event="search" href="javascript:;">
+                                        <div class="related-headline">
+                                            <p>검색</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="function category no-display">
+                                    <a class="depth-desktop-device related-link" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/jQuery">
+                                        <div class="related-headline">
+                                            <p>다른 이야기 더 보기</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="function category-all no-display">
+                                    <a class="depth-desktop-device related-link" href="/category">
+                                        <div class="related-headline">
+                                            <p>모든 이야기 보기</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="activity-more activity-category pseudo" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/jQuery">자바스크립트 이야기/jQuery 카테고리의 <span>다른 이야기를 둘러봅니다</span></a>
+                        <a class="activity-more activity-all pseudo" href="/category">소년코딩의 <span>모든 이야기를 둘러봅니다</span></a>
+                    </div>
+                    <div class="activity-section share-entry">
+                        <h4>공유하려면 대상을 선택하세요</h4>
+                        <div class="activity-main-content">
+                            <ul class="share-sheet" style="list-style:none">
+                                <li class="share-sns">
+                                    <h5>소셜</h5>
+                                    <ol style="list-style:none">
+                                        <li class="twitter share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="twitter" href="javascript:;">트위터</a>
+                                        </li>
+                                        <li class="facebook share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="facebook" href="javascript:;">Facebook</a>
+                                        </li>
+                                        <li class="story share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="story" href="javascript:;">카카오스토리</a>
+                                        </li>
+                                        <li class="band share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="band" href="javascript:;">Band</a>
+                                        </li>
+                                        <li class="naver share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="naver" href="javascript:;">Naver</a>
+                                        </li>
+                                        <li class="google share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="google" href="javascript:;">Google+</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="share-talk mobile">
+                                    <h5>메시지</h5>
+                                    <ol style="list-style:none">
+                                        <li class="kakao share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="kakao" href="javascript:;">카카오톡</a>
+                                        </li>
+                                        <li class="line share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="line" href="javascript:;">Line</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="share-memo">
+                                    <h5>기록</h5>
+                                    <ol style="list-style:none">
+                                        <li class="pocket share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="pocket" href="javascript:;" target="_blank">Pocket</a>
+                                        </li>
+                                        <li class="evernote share-event">
+                                            <a class="pseudo depth-desktop depth-desktop-device" data-share="evernote" href="javascript:;">Evernote</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="activity-section info-entry">
+                        <div class="info">
+                            <h4>블로그 정보</h4>
+                            <div id="info-avatar"></div>
+                            <div class="info-title"><a href="/">소년코딩</a><span class="no-display"> - </span><span>소년코딩</span></div>
+                            <p>소년코딩, 자바스크립트, C++, 물리, 게임 코딩 이야기</p>
+                            <aside class="control">
+                                <a class="no-text pseudo depth info-add" data-info="add" href="javascript:;" title="소년코딩 블로그 추가하기…">소년코딩 블로그 추가하기…</a>
+                                <a class="no-text pseudo depth info-link" data-info="links" href="javascript:;" title="관련 링크 보기">관련 링크 보기</a>
+                            </aside>
+                        </div>
+                        <div id="article-info-recent-list" class="recent-posts">
+                            <h4>최근에 게시된 이야기</h4>
+                        </div>
+                    </div>
+                </article>
+                <div class="toolbar-support" style="display:none">
+                    <ul class="toolbar-activity">
+                        <li class="toolbar-comments"><a class="pseudo no-text depth-mobile toolbar-act-event" data-act="comments" href="javascript:;">댓글</a></li>
+                        <li class="toolbar-related"><a class="pseudo no-text depth-mobile toolbar-act-event" data-act="related" href="javascript:;">다른 이야기</a></li>
+                        <li class="toolbar-share"><a class="pseudo no-text depth-mobile toolbar-act-event" data-act="share" href="javascript:;">공유</a></li>
+                    </ul>
+                    <ul class="toolbar-function">
+                        <li>
+                            <a class="pseudo toolbar-another-category" href="/category/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%9D%B4%EC%95%BC%EA%B8%B0/jQuery">다른 이야기 읽어보기</a>
+                        </li>
+                    </ul>
+                </div>
+            
+            
+        </div>
+        
+            <nav class="paging">
+                <a  href='/46' class="paging-button no-text pseudo depth-desktop prev ">최신</a>
+                <a  href='/44' class="paging-button no-text pseudo depth-desktop next ">다음</a>
+                <div class="number-box">
+                    
+                        <a  href='/244' class="number"><span >1</span></a>
+                    
+                        <a  class="number"><span >&middot;&middot;&middot;</span></a>
+                    
+                        <a  href='/49' class="number"><span >160</span></a>
+                    
+                        <a  href='/48' class="number"><span >161</span></a>
+                    
+                        <a  href='/47' class="number"><span >162</span></a>
+                    
+                        <a  href='/46' class="number"><span >163</span></a>
+                    
+                        <a  class="number"><span class="selected">164</span></a>
+                    
+                        <a  href='/44' class="number"><span >165</span></a>
+                    
+                        <a  href='/43' class="number"><span >166</span></a>
+                    
+                        <a  href='/42' class="number"><span >167</span></a>
+                    
+                        <a  href='/41' class="number"><span >168</span></a>
+                    
+                        <a  class="number"><span >&middot;&middot;&middot;</span></a>
+                    
+                        <a  href='/1' class="number"><span >207</span></a>
+                    
+                </div>
+            </nav>
+        
+        <!--
+            *** 방문자 통계 ***
+            show-counter/hide-counter: 방문자 통계 보이기/숨기기
+        -->
+        <footer class="footer show-counter">
+            <div class="jacket-cover mobile bottom"></div>
+            <!--<a id="copyright" href="http://fraccinospace.tistory.com" target="_blank"><span class="footer-content-title">Designed by </span>Fraccino Kaniwari</a>-->
+            <div class="creat-group">
+                <div class="counter">
+                    <span class="yesterday"><span class="footer-content-title">Yesterday</span> 2,477</span>
+                    <span class="today"><span class="footer-content-title">Today</span> 2,662</span>
+                    <span class="total"><span class="footer-content-title">Total</span> 1,481,866</span>
+                </div>
+                <a class="created" href="/"><span class="footer-content-title">Created by</span> 소년코딩</a>
+            </div>
+            <a class="no-text pseudo depth go-to-top event" data-event="top" href="javascript:;">Top</a>
+        </footer>
+        <aside id="cus-toolbar">
+            <ul>
+                <li class="write-post"><a class="pseudo" href="https://boycoding.tistory.com/manage/entry/post">글 작성</a></li>
+                <li class="admin"><a class="pseudo depth-mobile" href="https://boycoding.tistory.com/manage">관리</a></li>
+                <li class="login"><a id="login" class="pseudo depth-mobile" href="javascript:;">로그…</a></li>
+            </ul>
+        </aside>
+        <div id="jacket-hidden" class="jacket-cover mobile top"></div>
+    </div>
+    <div id="sub-side" class="hue" style="display:none">
+        <aside class="sub-field search-field">
+            
+                <label class="pseudo" for="search-bar"></label>
+                <span class="search-type-to-text">검색어 입력</span>
+                <input id="search-bar" type="search" name="search" value="" autocomplete="off" onkeypress="if (event.keyCode == 13) { try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){} }" />
+                <span class="search-start">검색을 시작합니다</span>
+                <button class="search-submit no-text" onclick="try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){}" title="입력한 검색어로 검색 시작">검색</button>
+            
+            <ul class="search-tag">
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B%20%EB%B0%B0%EC%97%B4" class="tag-link cloud4">C++ 배열</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B%20%EA%B8%B0%EC%B4%88" class="tag-link cloud4">C++ 기초</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4" class="tag-link cloud4">디자인 패턴</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B%20%EC%A0%9C%EC%96%B4%EB%AC%B8" class="tag-link cloud4">C++ 제어문</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B%20%ED%8F%AC%EC%9D%B8%ED%84%B0" class="tag-link cloud4">C++ 포인터</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8" class="tag-link cloud3">자바스크립트</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B" class="tag-link cloud1">C++</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B0%95%EC%A2%8C" class="tag-link cloud3">자바스크립트 강좌</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/C%2B%2B%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%ED%98%95" class="tag-link cloud4">C++ 기본 자료형</a>
+                    </li>
+                
+                    <li class="search-tag-list">
+                        <a href="/tag/Level%201" class="tag-link cloud4">Level 1</a>
+                    </li>
+                
+            </ul>
+        </aside>
+        <aside class="sub-field info-field">
+            <div class="info-field-scroll">
+                <div class="info-field-cell">
+                    <div class="info-field-entry">
+                        <div class="blogger-info">
+                            <div id="avatar"></div>
+                            <h4>소년코딩</h4>
+                            <p id="blog-desc">소년코딩, 자바스크립트, C++, 물리, 게임 코딩 이야기</p>
+                        </div>
+                        <!--
+                            *** 이 블로그에 관하여 ***
+                            links-group/no-links-group: 좋아하는 링크 보이기/숨기기
+                            recent-list/no-recent-list: 최근 글 보이기/숨기기
+                        -->
+                        <aside id="widget" class="links-group recent-list">
+                            <div class="favorite-links">
+                                <h5>블로거가 좋아하는 링크</h5>
+                                <ul id="favorite-links">
+                                    
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="https://boycoding.tistory.com" target="_blank">소년코딩</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="https://fraccinospace.tistory.com" target="_blank">프라치노 공간</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="https://adsense8.tistory.com" target="_blank">Adsense Study</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="https://bcho.tistory.com" target="_blank">조대협의 블로그</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="http://blog.naver.com/yo2dh" target="_blank">공감하고 공유하는 프로그래머..</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="http://nanite.tistory.com" target="_blank">코코넛냠냠</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="pseudo depth-desktop-device" href="http://zepeh.tistory.com" target="_blank">ZepehWAVE</a>
+                                        </li>
+                                    
+                                </ul>
+                            </div>
+                            <div id="recent-posts" class="recent-posts">
+                                <h5>최근에 게시된 이야기</h5>
+                                <ul>
+                                    
+                                        
+                                    
+                                    
+                                        <li>
+                                            <a href="/244"><span class="type">본문</span><span class="no-display">: </span>C++ 09.05 - 생성자 (Constructor)</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a href="/243"><span class="type">본문</span><span class="no-display">: </span>C++ 09.04 - 캡슐화 (Encapusulation)</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a href="/242"><span class="type">본문</span><span class="no-display">: </span>C++ 09.03 - 클래스의 public과 private..</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a href="/241"><span class="type">본문</span><span class="no-display">: </span>[2019년 회고] 게으름, 성장, 두려움 그..</a>
+                                        </li>
+                                    
+                                    
+                                        <li>
+                                            <a class="comment-type" href="/233#comment12174121"><span class="type">댓글</span><span class="no-display">: </span>저는 아주 잘 이해했는데 댓글 보니 안타..</a>
+                                        </li>
+                                    
+
+                                        <li>
+                                            <a class="comment-type" href="/163#comment12173099"><span class="type">댓글</span><span class="no-display">: </span>signed 정수여도 음수가 아니면 시프트..</a>
+                                        </li>
+                                    
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <nav class="sub-menu">
+            <ul>
+                <li><a class="pseudo depth close event" data-event="close" href="javascript:;">종료하기</a></li>
+                <li><a class="pseudo depth search event" data-event="search" href="javascript:;">검색</a></li>
+                <li><a class="pseudo depth info event" data-event="info" href="javascript:;">소년코딩</a></li>
+            </ul>
+        </nav>
+    </div>
+    <aside id="toolbar" class="hide clearly">
+        <ul class="toolbar-paging">
+            <li><a class="pseudo toolbar-prev" href="javascript:;">최신</a></li>
+            <li><a class="pseudo toolbar-next" href="javascript:;">다음</a></li>
+        </ul>
+        <ul class="toolbar-activity">
+        </ul>
+        <ul class="toolbar-function desktop">
+            <li><a class="pseudo toolbar" data-toolbar="search" href="javascript:;">검색</a></li>
+            <li><a class="pseudo toolbar" data-toolbar="top" href="javascript:;">맨 위로</a></li>
+        </ul>
+    </aside>
+
+	
+<div class="youtu menu_toolbar" style="top:60px;" >
+	<button onclick="window.open('https://www.youtube.com/channel/UCuQBTTSy34WdjFHzo3CeC5Q')" style="width:165px;" id="youtu" class="youtu btn_menu_toolbar">
+		<strong class="txt_tool_id" id="youtu_1" style="padding-left:50px;">유튜브</strong>
+		<em class="txt_state" id="youtu_2">놀러가기</em>
+	</button>
+</div>
+<script>
+$("#youtu").mouseover(function(){
+	$("#youtu").css({'background-image': 'url(https://tistory2.daumcdn.net/tistory/2351996/skin/images/youtube1.png)'});
+	$("#youtu_1").css({'color': '#000'});
+	$("#youtu_2").css({'color': 'white'});
+});
+$("#youtu").mouseout(function(){
+	$("#youtu").css({'background-image': 'url(https://tistory2.daumcdn.net/tistory/2351996/skin/images/youtube0.png)'});
+		$("#youtu_1").css({'color': '#777'});
+	$("#youtu_2").css({'color': '#000'});
+});
+$("#youtu").click(function(){
+	
+});
+</script>
+<script src="//search1.daumcdn.net/search/statics/common/js/g/search_dragselection.min.js"></script>
+<script>
+    (function($) {
+        $("body").bind('copy', function (e) {
+
+            var url = document.location.href,
+                decodedUrl = decodeURI(url),
+                selection = window.getSelection();
+
+
+            if (typeof window.getSelection == "undefined") {//IE8 or earlier...
+                event.preventDefault();
+
+                var pagelink = '\n\n 출처: ' + decodedUrl,
+                    copytext = selection + pagelink;
+
+                if (window.clipboardData) {
+                    window.clipboardData.setData('Text', copytext);
+                }
+                return;
+            }
+            var body_element = document.getElementsByTagName('body')[0];
+
+            //if the selection is short let's not annoy our users
+            if (("" + selection).length < 30) return;
+
+            //create a div outside of the visible area
+            var newdiv = document.createElement('div');
+            newdiv.style.position = 'absolute';
+            newdiv.style.left = '-99999px';
+            body_element.appendChild(newdiv);
+            newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+            //we need a <pre> tag workaround
+            //otherwise the text inside "pre" loses all the line breaks!
+            if (selection.getRangeAt(0).commonAncestorContainer.nodeName == "PRE") {
+                newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+            }
+
+            newdiv.innerHTML += '<br /><br />출처: <a href="' + url + '">' + escapeHTML(decodedUrl) + '</a> [소년코딩]';
+
+            selection.selectAllChildren(newdiv);
+
+            window.setTimeout(function () {
+                body_element.removeChild(newdiv);
+            }, 200);
+        });
+    })(tjQuery);
+</script>
+	<script>
+	    lightbox.option({
+			"fadeDuration": 200,
+		    "resizeDuration": 200,
+		    "wrapAround": false,
+			"albumLabel": "%1 / %2",
+			"fitImagesInViewport":true ,
+			"stopEvent": false
+	    })
+	</script><script type="text/javascript">
+var _tiq = 'undefined' !== typeof _tiq ? _tiq : [];
+_tiq.push(['__setConfig', {enableScroll:true, enableClick:true, enableButton:true}]);
+_tiq.push(["__setParam", "svcdomain", "user.tistory.com"]);
+(function(d) {
+	var se = d.createElement('script'); se.type = 'text/javascript'; se.async = true;
+	se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
+	var s = d.getElementsByTagName('head')[0]; s.appendChild(se);
+})(document);
+_tiq.push(['__setParam', 'param_ex', JSON.stringify({"userId":"3295882","blogId":"2351996","role":"guest","filterTarget":false,"entryId":"45"})]);
+_tiq.push(['__trackPageview']);
+_tiq.push(['__content', 't_content', {
+'c_id':'2351996_45', 
+'c_title':'jQuery 소스 구조분석을 해야하는 이유', 
+'type':'article', 
+'author':'', 
+'author_id':'3295882', 
+'cp':'소년코딩', 
+'cp_id':'2351996', 
+'regdata':'2016-09-27 14:23:25', 
+'plink':'https://boycoding.tistory.com/45', 
+'media':'pcweb', 
+}]);
+var addEvent = function (evt, fn) { window.addEventListener ? window.addEventListener(evt, fn, false) : window.attachEvent('on' + evt, fn); };
+var removeEvent = function(evt, fn) { window.removeEventListener ? window.removeEventListener(evt, fn, false) : window.detachEvent('on' + evt, fn);};
+var ua = navigator.userAgent.toLowerCase(); var isIOS = /iP[ao]d|iPhone/i.test(ua);
+var contentExStat = function() {
+		_tiq.push(['__content', 't_content_ex', {
+			'data_type':'usage'
+, 'meta': {
+'c_id':'2351996_45', 
+'c_title':'jQuery 소스 구조분석을 해야하는 이유', 
+'type':'article', 
+'author':'', 
+'author_id':'3295882', 
+'cp':'소년코딩', 
+'cp_id':'2351996', 
+'regdata':'2016-09-27 14:23:25', 
+'plink':'https://boycoding.tistory.com/45', 
+'media':'pcweb', 
+}
+}]);
+		removeEvent(isIOS ? 'pagehide' : 'beforeunload', contentExStat);
+};
+addEvent(isIOS ? 'pagehide' : 'beforeunload', contentExStat);
+</script>
+<script type="text/javascript">window.roosevelt_params_queue = window.roosevelt_params_queue || []; window.roosevelt_params_queue.push({channel_id: "dk", channel_label: 'tistory'});</script>
+<script type="text/javascript" src="//t1.daumcdn.net/midas/rt/dk_bt/roosevelt_dk_bt.js" async></script>            <script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script>
+            <script type="text/javascript">window.tiara = {"svcDomain":"user.tistory.com","section":"\uae00\ubdf0","trackPage":"\uae00\ubdf0_\ubcf4\uae30","page":"\uae00\ubdf0","key":"2351996-45","customProps":{"userId":0,"blogId":"2351996","role":"guest","filterTarget":false,"trackPage":"\uae00\ubdf0_\ubcf4\uae30","entryId":"45"},"entry":{"entryId":"45","categoryName":"jQuery","categoryId":"916000","author":"3295882","authorId":"3295882","image":"3295882","plink":"\/45","tags":["jQuery","\uc790\ubc14\uc2a4\ud06c\ub9bd\ud2b8"],"key":"2351996-45"},"sentryDsn":"https:\/\/24d2f6a6e88f4e84885403aabdbd1c7c:e0a560324995426d8fde4d509d4b5ce9@sentry.kakao.com\/894"};</script>
+            <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/tiara/tiara.min.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"></script>
+                        <script type="text/javascript">
+                window.roosevelt_params_queue = window.roosevelt_params_queue || [{channel_id: 'dk', channel_label: 'tistory'}];
+            </script>
+            <script type="text/javascript" src="//t1.daumcdn.net/midas/rt/dk_bt/roosevelt_dk_bt.js" async></script><script type="text/javascript">if(window.console!=undefined){setTimeout(console.log.bind(console,"%cTISTORY","font:8em Arial;color:#EC6521;font-weight:bold"),0);setTimeout(console.log.bind(console,"%c  나를 표현하는 블로그","font:2em sans-serif;color:#333;"),0);}</script><iframe style="position:absolute;width:1px;height:1px;left:-100px;top:-100px" src="//boycoding.tistory.com/api" id="editEntry"></iframe>            <div class="#menubar menu_toolbar ">
+                                <h2 class="screen_out">티스토리툴바</h2>
+                                <div class='btn_tool btn_tool_type1' id='menubar_wrapper'></div><div class="btn_tool">
+                    <button class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="2351996" data-url="https://boycoding.tistory.com" data-device="web_pc">
+                        <strong class="txt_tool_id">소년코딩</strong>
+                        <em class="txt_state">구독하기</em>
+                        <span class="img_common_tistory ico_check_type1"></span>
+                    </button>
+                </div>
+                            </div><script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/a328f53bd878f7ea6ea0381dd012ce616d4a5be5/blogs/script/menubar.min.js?_version_=a328f53bd878f7ea6ea0381dd012ce616d4a5be5"></script>        <div class="layer_tooltip">
+            <div class="inner_layer_tooltip">
+                <p class="desc_g"></p>
+            </div>
+        </div>
+        <div id="tistoryEtcLayer" class="layer_post"></div><div id="tistorySnsLayer" class="layer_post"></div></body>
+</html>
+<script>
+	// stst
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-84670806-1', 'auto');
+    ga('send', 'pageview');
+
+</script>

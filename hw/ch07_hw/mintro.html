@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>HTML5 개인 포트폴리오 홈페이지</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		.semi-pic {
+			width: 4em;
+			height: 3em;
+		}
+		.ui-content {
+			overflow-x: visible;
+		}
+		#panel1 ul li {
+			font-size: 14px;
+		}
+		#panel2 ul li {
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+		<div data-role="header">
+			<h1>안세연 홈페이지</h1>
+		</div>
+		<div data-role="content">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul>
+					  <li><a href="#tab1">자기소개</a></li>
+					  <li><a href="#tab2">인적사항</a></li>
+					  <li><a href="#tab3">경력</a></li>
+					</ul>
+				</div>
+				<div id="tab1">
+			      <section class="section1">
+				  <h3>자기소개</h3>
+				  <img id="stu-pic" src="stu.jpg" />
+				  <p>
+					저는 성공회대학교 소프트웨어공학과를 재학중이고 웹 개발 관련 분야에 관심을 갖고 있는 안세연입니다. 평소 프로그래밍을 즐겨하였고 고급 웹 프로그래밍 기술을 이용한 프로젝트 경험이 있습니다. 아직 개발 능력이 부족하여 더 배우고 더 노력하여 이번 프로젝트 또한 성공적으로 마칠 수 있도록 노력할 것입니다. 더불어, 많은 개발 지식을 얻을 수 있도록 열심히 할 것 입니다. 항상 어떤 환경에서도 최선을 다하고 즐기는 마음으로 주어진 일에 임하겠습니다.
+				  </p>
+			      </section>
+			      <aside>
+				    <h3>참조링크</h3>
+				    <a href="http://www.naver.com">
+					    <img class="portal" src="naver.jpg" alt="네이버이동" />
+				    </a>
+				    <a href="http://www.google.com">
+					   <img class="portal" src="google.jpg" alt="구글이동" />
+				    </a>
+				    <a href="http://www.daum.net">
+					   <img class="portal" src="daum.jpg" alt="다음이동" />
+				    </a>
+			      </aside>
+				</div>
+				<div id="tab2">
+					<section class="section1">  
+						<h3>인적사항</h3>
+						<ul>
+							<li>성    명 : 안세연</li>
+							<li>생년월일 : 1998. 02. 07</li>
+							<li>주    소 : 서울시 123</li>
+							<li>연 락 처 : 010-123-4567</li>
+							<li>학    력
+							
+								<table class="ui-responsive table" id="my-table1" data-mode="columntoggle" data-role="table">
+									<thead>
+									  <tr>
+										<th data-priority="1">출신학교</th>
+										<th data-priority="2">졸업년도</th>
+										<th data-priority="3">지역순</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<td>우신초등학교 졸업</td> <td>2007. 2</td> <td>서울시 영등포구</td>
+									  </t>
+									  <tr>
+										<td>영원중학교 졸업</td> <td>2013. 2.</td> <td>서울시 영등포구</td>
+									  </tr>
+									  <tr>
+									    <td>대영고등학교 졸업</td> <td>2016. 2.</td> <td>서울시 영등포구</td>
+									  </tr>
+									  <tr>
+									    <td><a href="https://www.google.com/maps/place/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B5%AC%EB%A1%9C%EA%B5%AC+%EC%98%A4%EB%A5%982%EB%8F%99+%EC%97%B0%EB%8F%99%EB%A1%9C+320/@37.4877397,126.8229683,17z/data=!3m1!4b1!4m5!3m4!1s0x357b6261fe526efb:0xe78ca395ff4c6df0!8m2!3d37.4877355!4d126.825157?hl=ko" target="_blank">성공회대학교 소프트웨어공학과 재학</a></td> <td>2020. 4.</td> <td>서울시 영등포구</td>
+									  </tr>
+									</tbody>
+								 </table>
+							</li>
+						</ul>
+					</section>
+				  </div>
+				  <div id="tab3">				
+					<a href="#panel1" data-role="button" data-inline="true">교과</a>
+					<a href="#panel2" data-role="button" data-inline="true">비교과</a>
+						
+				</div>
+				<div data-role="panel" id="panel1" data-display="overlay">
+					<ul data-role="listview" data-filter="true" data-filter-placeholder="검색키워드를 입력하세요">
+						<li data-role="listdivider" style="background-color: #e9e9e9">2020-1학기</li>
+						<li><img src="제이쿼리.png">하이브리드 앱 프로그래밍<span class="ui-li-count">전선</span></li>
+						<li><img src="web.png">웹 프로그래밍<span class="ui-li-count">전선</span></li>
+						<li><img src="vuejs.png">프론트엔드 개발<span class="ui-li-count">전선</span></li>
+						<li data-role="listdivider" style="background-color: #e9e9e9">2019-2학기</li>
+						<li>모바일 프로그래밍<span class="ui-li-count">전선</span></li>
+						<li>고급 웹프로그래밍2<span class="ui-li-count">전선</span></li>
+						<li>과정지도<span class="ui-li-count">전필</span></li>
+						<li>교양 러시아어<span class="ui-li-count">교양</span></li>
+						<li>기초영자신문읽기<span class="ui-li-count">교양</span></li>
+					</ul>
+				</div>
+			
+				<div data-role="panel" id="panel2" data-display="overlay" data-position="right">
+					<ul data-role="listview">
+						<li data-role="listdivider" style="background-color: #e9e9e9">학생회</li>
+						<li>2016 'SWAG' 소프트웨어공학과 학생회 선전부원</li>
+						<li>2017 '새침' 소프트웨어공학과 학생회 선전부장
+						<div id="pic-container">
+						<img id="pic1" class="semi-pic" src="seminar1.jpg" />
+						<img id="pic2" class="semi-pic" src="seminar2.jpg" />
+						<img id="pic3" class="semi-pic" src="seminar3.jpg" />
+						</div>	
+						</li>
+						<li data-role="listdivider" style="background-color: #e9e9e9">동아리</li>
+						<li>2018. 4 개발자들 동아리 활동</li>
+						<li data-role="listdivider" style="background-color: #e9e9e9">프로젝트</li>
+						<li>2019.9  데이터베이스 캡스톤디자인 프로젝트</li>
+						<li>2020.3  소프트웨어 캡스톤디자인 프로젝트</li>
+						<li style="height: 180px"></li>
+					</ul>
+				</div> 
+			</div>
+			
+			<div data-role="footer" data-position="fixed">
+				<h2>Copyright &copy; 2020 Ahn, SeYeon </h2>
+			</div>
+		</div>
+		
+
+
+</body>
+
+</html>
